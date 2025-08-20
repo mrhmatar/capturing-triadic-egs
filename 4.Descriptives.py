@@ -5,14 +5,6 @@
             ----------------------------------------------------
                         DESCRIPTIVE STATISTICS
                         
-Generates descriptive statistics and graphs for the event-based approach
-
-INPUTS:
-    - "ETandSpeechA.csv", "ETandSpeechT.csv", and "ETandSpeechP.csv" 
-    participants' merged gaze and speech data
-    
-OUTPUTS:
-    NA
 """
 import pandas as pd
 import numpy as np
@@ -290,4 +282,5 @@ TPf = pd.DataFrame({'FaceP_T': dfT['AOI hit [Screenshot T.jpeg - Face P-T]'], 'F
 APf = pd.DataFrame({'FaceP_A': dfA['AOI hit [Screenshot A.jpeg - Face P-A]'], 'FaceA_P': dfP['AOI hit [Screenshot P.jpeg - Face A-P]']})
 rTAf, pTAf = overall_Pcor(TAf, 'FaceA_T', 'FaceT_A', 'Face AOI hit', plotIt=False)
 rTPf, pTPf = overall_Pcor(TPf, 'FaceP_T', 'FaceP_T', 'Face AOI hit', plotIt=False)
+
 rAPf, pAPf = overall_Pcor(APf, 'FaceP_A', 'FaceA_P', 'Face AOI hit', plotIt=False)
