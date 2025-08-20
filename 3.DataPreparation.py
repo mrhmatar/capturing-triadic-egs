@@ -4,20 +4,6 @@
             Capturing Eye Gaze Synchrony in a Triadic Discussion
             ----------------------------------------------------
                             DATA PREPARATION
-                            
-Prepares the data for future processing:
-    1. Identifies and interpolates missing data, downsamples to 25 Hz
-    2. Codes gaze and speech events
-    3. Prepares dyadic and triadic dfs for (mv)SUSY
-    
-INPUTS:
-    - "ETandSpeechA.csv", "ETandSpeechT.csv", and "ETandSpeechP.csv" 
-    participants' merged gaze and speech data
-    
-OUTPUTS:
-    - "TA.txt", "TP.txt","AP.txt" dyadic dataframe for SUSY
-    - "TAPx.txt",  "TAPy.txt", "TAPf.txt" triadic dataframe for mvSUSY
-
 """
 import pandas as pd
 import numpy as np
@@ -155,4 +141,5 @@ AP.to_csv('AP.txt', sep=' ', index=False)
 TAPx.to_csv('TAPx.txt', sep=' ', index=False)
 TAPy.to_csv('TAPy.txt', sep=' ', index=False)
 TAPd.to_csv('TAPd.txt', sep=' ', index=False)
+
 TAPf.to_csv('TAPf.txt', sep=' ', index=False)
