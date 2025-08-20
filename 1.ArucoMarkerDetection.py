@@ -4,21 +4,6 @@
                 Capturing Eye Gaze Synchrony in a Triadic Discussion
                 ----------------------------------------------------
                             ARUCO MARKER DETECTION
-
-1. Detects ArUco marker (ID and Corners) in eye tracking scene camera video.
-2. Synchronizes ArUco detection data (i.e., scene camera video frame rate) with gaze data (i.e., eye tracker sampling rate).
-3. Computes objective gaze location indices relative to ArUco marker (i.e., relatable across video frames).
-
-INPUTS:
-- Eye tracker scene camera video 'scenevideo.mp4' in Tobii Glasses 3 SD card folder "20231107T115159Z(3)"
-- Eye tracking data file for 1 participant ('Data Export 20231107T115159Z(3).xlsx' in Tobii Pro Lab)
-
-*Eye tracking videos were not shared to protect participants' privacy
-
-OUTPUTS:
-- ArUcO marker detection file 'aruco_participant.csv'
-- Eye tracking data file with objective gaze location indices e.g., 'aruco-dist_T.csv'
-
 """
 
 import cv2
@@ -153,3 +138,4 @@ df2 = df2.drop(["aruco_Centers"], axis = 1)
 df2
 df2.columns
 df2.to_csv('aruco-dist_T.csv', index=False) 
+
