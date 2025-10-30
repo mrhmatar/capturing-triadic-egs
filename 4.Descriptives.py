@@ -109,8 +109,8 @@ print(f"Joint gaze at speaker (%): T={jgs_T}, A={jgs_A}, P={jgs_P}")
 mean_jgs = round(statistics.mean([jgs_T, jgs_A, jgs_P]), 2)
 sd_jgs = round(statistics.stdev([jgs_T, jgs_A, jgs_P]), 2)
 print("Mean joint gaze at speaker %:", mean_jgs, "| SD:", sd_jgs)
-#Joint gaze at speaker (%): T=12.85, A=1.95, P=2.31
-#Mean joint gaze at speaker %: 5.7 | SD: 6.19
+# Joint gaze at speaker (%): T=13.12, A=2.12, P=2.39
+# Mean joint gaze at speaker %: 5.88 | SD: 6.27
 
 # Joint gaze 
 jg_T = round(ATP['jointGazeT_AP'].sum() / len(ATP) * 100, 2)
@@ -133,8 +133,8 @@ print(f"Speaking time (%): T={sp_T}, A={sp_A}, P={sp_P}")
 mean_sp = round(statistics.mean([sp_T, sp_A, sp_P]), 2)
 sd_sp = round(statistics.stdev([sp_T, sp_A, sp_P]), 2)
 print("Mean speaking time %:", mean_sp, "| SD:", sd_sp)
-#Speaking time (%): T=38.14, A=34.88, P=26.89
-#Mean speaking time %: 33.3 | SD: 5.79
+#Speaking time (%): T=38.76, A=33.69, P=27.65
+#Mean speaking time %: 33.37 | SD: 5.56
 
 dgT = pd.DataFrame({'Direct Gaze T': ['Face A', 'Face P'],
         'Frequency (%)': [round(ATP['FaceA_T'].sum()/len(ATP)*100, 2), round(ATP['FaceP_T'].sum()/len(ATP)*100, 2)]})
@@ -200,3 +200,4 @@ sns.barplot(x='Mutual Gaze', y='Frequency (%)', data=mg, legend=None, palette=['
 sns.barplot(x='Joint Gaze at Speaker', y='Frequency (%)', data=jgs, legend=None, palette=['yellow', 'lightskyblue', 'red'], ax = axes[1])
 plt.tight_layout()
 plt.show()
+
