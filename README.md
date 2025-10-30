@@ -1,6 +1,9 @@
+
 ---
 
 # Capturing Triadic Eye Gaze Synchrony
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17486477.svg)](https://doi.org/10.5281/zenodo.17486477)
 
 ---
 
@@ -132,9 +135,8 @@ Summary tables and plots
 If you use this repository, please cite it as follows:
 
 **APA citation**
-
-Matar, M. (2025). *Capturing triadic eye gaze synchrony* [Computer software]. GitHub.
-Available at: [https://github.com/mrhmatar/capturing-triadic-egs](https://github.com/mrhmatar/capturing-triadic-egs)
+Matar, M. (2025). *Capturing triadic eye gaze synchrony* [Computer software]. Zenodo.
+[https://doi.org/10.5281/zenodo.17486477](https://doi.org/10.5281/zenodo.17486477)
 
 **BibTeX citation**
 
@@ -143,15 +145,18 @@ Available at: [https://github.com/mrhmatar/capturing-triadic-egs](https://github
   author    = {Matar, M.},
   title     = {Capturing triadic eye gaze synchrony},
   year      = {2025},
-  publisher = {GitHub},
-  url       = {https://github.com/mrhmatar/capturing-triadic-egs},
-  version   = {1.0.0}
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.17486477},
+  version   = {1.0.0},
+  url       = {https://github.com/mrhmatar/capturing-triadic-egs}
 }
 ```
+
 ---
+
 ## Version Notes
 
-This is the **first public release** of the *Capturing Triadic Eye Gaze Synchrony* pipeline.  
+This is the **first public release** of the *Capturing Triadic Eye Gaze Synchrony* pipeline.
 Previous development versions were maintained privately during internal testing and validation.
 
 ---
