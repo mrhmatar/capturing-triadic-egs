@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this code or dataset, please cite it as follows."
+title: "Capturing Triadic Eye Gaze Synchrony"
+authors:
+  - family-names: "Matar"
+    given-names: "M."
+version: "1.0.0"
+doi: "10.5281/zenodo.17486477"
+date-released: "2025-10-29"
+repository-code: "https://github.com/mrhmatar/capturing-triadic-egs"
+url: "https://github.com/mrhmatar/capturing-triadic-egs"
+license: "CC-BY-4.0"
+keywords:
+  - eye tracking
+  - gaze synchrony
+  - triadic interaction
+  - behavioral methods
+  - data analysis pipeline
+  - open science
+  - reproducibility
+preferred-citation:
+  type: software
+  authors:
+    - family-names: "Matar"
+      given-names: "M."
+  title: "Capturing Triadic Eye Gaze Synchrony"
+  year: 2025
+  version: "1.0.0"
+  doi: "10.5281/zenodo.17486477"
+  repository-code: "https://github.com/mrhmatar/capturing-triadic-egs"
