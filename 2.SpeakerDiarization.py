@@ -8,6 +8,7 @@
 import os
 import time
 import pickle
+import random
 import numpy as np
 import pandas as pd
 from pyAudioAnalysis import audioSegmentation as aS
@@ -25,6 +26,7 @@ audio_file_path = os.path.join(WD, AUDIO_FILENAME)
 
 # Perform speaker segmentation
 #-----------------------------
+random.seed(42)
 start = time.time()
 # Default mid_window=1.0, mid_step=0.1, short_window=0.1 
 seg_result = aS.speaker_diarization(audio_file_path, n_speakers=N_SPEAKERS, plot_res=PLOT_RES)
@@ -156,3 +158,4 @@ def align_speech_to_et(df_et: pd.DataFrame, df_speech_25hz: pd.DataFrame, speech
 align_speech_to_et(dfP, df_speechP, "speech_P", "ETandSpeechP.csv")
 align_speech_to_et(dfA, df_speechA, "speech_A", "ETandSpeechA.csv")
 align_speech_to_et(dfT, df_speechT, "speech_T", "ETandSpeechT.csv")
+
