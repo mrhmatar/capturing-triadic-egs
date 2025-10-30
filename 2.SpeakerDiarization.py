@@ -23,61 +23,59 @@ PLOT_RES = 1                   # Plot result (1) or not (0)
 os.chdir(WD)
 audio_file_path = os.path.join(WD, AUDIO_FILENAME)
 
-# # Perform speaker segmentation
-# #-----------------------------
-# start = time.time()
-# # Default mid_window=1.0, mid_step=0.1, short_window=0.1 
-# seg_result = aS.speaker_diarization(audio_file_path, n_speakers=N_SPEAKERS, plot_res=PLOT_RES)
-# end = time.time()
-# print(f"This took {round((end - start) / 60, 2)} minutes") # 5.17 minutes # 2.64 min
+# Perform speaker segmentation
+#-----------------------------
+start = time.time()
+# Default mid_window=1.0, mid_step=0.1, short_window=0.1 
+seg_result = aS.speaker_diarization(audio_file_path, n_speakers=N_SPEAKERS, plot_res=PLOT_RES)
+end = time.time()
+print(f"This took {round((end - start) / 60, 2)} minutes") # 5.17 minutes # 2.64 min
 
-# # Convert labels to contiguous segments and to milliseconds
-# # -----------------------------------------------------
-# segs, flags = aS.labels_to_segments(seg_result[0], 0.2)  #timestamps are in 0.5s
-# speech_interval_msec = (segs.astype(np.int32) * 500)     # Convert to milliseconds 
+# Relabel speakers in chronological order of first speech
+# -----------------------------------------------------
+def relabel_by_first_occurrence(labels_array):
+    """Relabel speakers so the first new voice = 0, second = 1, third = 2."""
+    label_map = {}
+    new_labels = []
+    next_label = 0
+    for lbl in labels_array:
+        if lbl not in label_map:
+            label_map[lbl] = next_label
+            next_label += 1
+        new_labels.append(label_map[lbl])
+    return np.array(new_labels), label_map
 
-# # Put the results of the speech analysis in a dataframe
-# speaker_label = np.array(flags) + 1  
-# speech = pd.DataFrame({
-#     'speech_interval_msec': speech_interval_msec.tolist(),
-#     'speaker_label': speaker_label
-# })
-# # Get timestamps
-# segs,flags = aS.labels_to_segments(seg_result[0], 0.2) #timestamps are in 0.5s
-# speech_interval_msec = segs.astype(np.int32)*500 # Convert to milliseconds
+seg_stable, mapping = relabel_by_first_occurrence(seg_result[0])
+print(f"[INFO] Original → Chronological mapping: {mapping}")
 
-# # Put the results of the speech analysis in a dataframe
-#  #-----------------------------------------------------
-#   #each participant has a column indicating whether they are speaking
+# Convert labels to contiguous segments and to milliseconds
+# ---------------------------------------------------------
+segs, flags = aS.labels_to_segments(seg_stable, 0.2)  #timestamps are in 0.5s
+speech_interval_msec = (segs.astype(np.int32) * 500)     # Convert to milliseconds 
 
-# speaker_label = np.array(flags) + 1
-# speech = pd.DataFrame({'speech_interval_msec': speech_interval_msec.tolist(), 'speaker_label': speaker_label})
- 
-# # Map diarization labels to participants
-# # -----------------------------------------
-# # From inspecting the recording:
-# #   T is speaker label 3
-# #   P is speaker label 2
-# #   A is speaker label 1
-# speech['speech_T'] = 0
-# speech.loc[speech['speaker_label'] == 3, 'speech_T'] = 1
+# Map diarization labels to participants
+# --------------------------------------
+    # First voice (T) → 0
+    # Second voice (A) → 1
+    # Third voice (P) → 2
+speech = pd.DataFrame({
+    'speech_interval_msec': speech_interval_msec.tolist(),
+    'speaker_label': np.array(flags)
+})
+speech['speech_T'] = (speech['speaker_label'] == 0).astype(int)
+speech['speech_A'] = (speech['speaker_label'] == 1).astype(int)
+speech['speech_P'] = (speech['speaker_label'] == 2).astype(int)
 
-# speech['speech_P'] = 0
-# speech.loc[speech['speaker_label'] == 2, 'speech_P'] = 1
+# Save speaker diarization results
+# --------------------------------------------------
+speech_csv = os.path.join(WD, "speech_segments.csv")
+speech_pkl = os.path.join(WD, "speech_segments.pkl")
 
-# speech['speech_A'] = 0
-# speech.loc[speech['speaker_label'] == 1, 'speech_A'] = 1
+speech.to_csv(speech_csv, index=False)
+with open(speech_pkl, "wb") as f:
+    pickle.dump(speech, f)
 
-# # Save speaker diarization results
-# # --------------------------------------------------
-# speech_csv = os.path.join(WD, "speech_segments.csv")
-# speech_pkl = os.path.join(WD, "speech_segments.pkl")
-
-# speech.to_csv(speech_csv, index=False)
-# with open(speech_pkl, "wb") as f:
-#     pickle.dump(speech, f)
-
-# print(f"[SAVED] Diarization results saved as:\n  - {speech_csv}\n  - {speech_pkl}")
+print(f"[SAVED] Diarization results saved as:\n  - {speech_csv}\n  - {speech_pkl}")
 
 # Reopen diarization results to reinstate 'speech'
 # --------------------------------------------------
@@ -158,4 +156,3 @@ def align_speech_to_et(df_et: pd.DataFrame, df_speech_25hz: pd.DataFrame, speech
 align_speech_to_et(dfP, df_speechP, "speech_P", "ETandSpeechP.csv")
 align_speech_to_et(dfA, df_speechA, "speech_A", "ETandSpeechA.csv")
 align_speech_to_et(dfT, df_speechT, "speech_T", "ETandSpeechT.csv")
-
