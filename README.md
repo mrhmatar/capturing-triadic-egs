@@ -3,7 +3,7 @@
 
 # Capturing Triadic Eye Gaze Synchrony
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17486477.svg)](https://doi.org/10.5281/zenodo.17486477)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17486478.svg)](https://doi.org/10.5281/zenodo.17486478)
 
 ---
 
@@ -135,20 +135,20 @@ Summary tables and plots
 If you use this repository, please cite it as follows:
 
 **APA citation**
-Matar, M. (2025). *Capturing triadic eye gaze synchrony* [Computer software]. Zenodo.
-[https://doi.org/10.5281/zenodo.17486477](https://doi.org/10.5281/zenodo.17486477)
+Matar, M. (2025). Capturing Triadic Eye Gaze Synchrony (Version v1.0.0) [Computer software]. Zenodo. 
+[https://doi.org/10.5281/zenodo.17486478](https://doi.org/10.5281/zenodo.17486478)
 
 **BibTeX citation**
 
 ```bibtex
-@software{matar2025capturingegs,
-  author    = {Matar, M.},
-  title     = {Capturing triadic eye gaze synchrony},
-  year      = {2025},
-  publisher = {Zenodo},
-  doi       = {10.5281/zenodo.17486477},
-  version   = {1.0.0},
-  url       = {https://github.com/mrhmatar/capturing-triadic-egs}
+@software{matar2025triadicegs,
+  author       = {Matar, Mariah},
+  title        = {Capturing Triadic Eye Gaze Synchrony},
+  year         = {2025},
+  publisher    = {Zenodo},
+  version      = {v1.0.0},
+  doi          = {10.5281/zenodo.17486478},
+  url          = {https://doi.org/10.5281/zenodo.17486478}
 }
 ```
 
