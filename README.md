@@ -15,7 +15,7 @@ This repository contains the data and code associated with the paper:
 ## Overview
 
 This repository provides a complete, reproducible pipeline for capturing and analyzing **eye gaze synchrony (eGS)** during **triadic interactions**.
-It integrates ArUco marker–based gaze translation, speaker diarization, multimodal synchronization, and (multi)variate synchrony analysis.
+It integrates ArUco marker–based gaze translation, speaker diarization, multimodal event-based coordination, and (multi)variate surrogate synchrony analysis.
 
 All scripts are designed to be run within a single **project folder** that contains the relevant video, audio, Tobii exports, and code files.
 Each step produces intermediate outputs (`.csv`, `.pkl`, `.txt`) to facilitate independent execution and modular debugging.
